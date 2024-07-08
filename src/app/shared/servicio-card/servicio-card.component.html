@@ -1,0 +1,14 @@
+<div class="card" [ngClass]="getCardClass()">
+  <div class="card-header">
+    <p class="card-document"><strong>Nº Documento:</strong> {{ servicio.numeroDocumento }}</p>
+  </div>
+  <div class="card-body">
+    <p><strong>Empresa:</strong> {{ servicio.empresa }}</p>
+    <p><strong>Monto:</strong> {{ servicio.monto }} S/.</p>
+    <p><strong>Fecha de Vencimiento:</strong> {{ servicio.fechaVencimiento }}</p>
+    <p><strong>Estado:</strong> {{ servicio.estado }}</p>
+  </div>
+  <div class="card-footer">
+    <button *ngIf="servicio.estado === 'PENDIENTE'" (click)="marcarComoPagada(servicio.id)" class="btn-pagar">Pagar</button>
+  </div>
+</div>

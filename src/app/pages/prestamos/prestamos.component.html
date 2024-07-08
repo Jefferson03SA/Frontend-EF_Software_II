@@ -1,0 +1,12 @@
+<div class="prestamos-container">
+  <button class="custom-button agregar" (click)="agregarPrestamo()">Agregar Préstamo</button>
+  <div class="cards-container">
+    <div class="card" *ngFor="let prestamo of prestamos" (click)="onPrestamoClick(prestamo.id)">
+      <p><strong>Monto:</strong> {{ prestamo.monto }} S/.</p>
+      <p><strong>Interés:</strong> {{ prestamo.interes * 100 }}%</p>
+      <p><strong>Fecha de Desembolso:</strong> {{ prestamo.fechaDesembolso }}</p>
+      <p><strong>Cuotas:</strong> {{ prestamo.plazo }}</p>
+      <p><strong>Entidad:</strong> {{ prestamo.entidad }}</p>
+    </div>
+  </div>
+</div>

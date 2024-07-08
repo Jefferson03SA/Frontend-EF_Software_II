@@ -1,0 +1,15 @@
+<div class="sidenav">
+  <div class="app-name">
+    <h2>Gestión de Deudas y Préstamos</h2>
+  </div>
+  <nav>
+    <ul>
+      <li><a routerLink="/servicios" routerLinkActive="active"><span class="material-icons">build</span> Servicios</a></li>
+      <li><a routerLink="/prestamos" routerLinkActive="active"><span class="material-icons">attach_money</span> Préstamos</a></li>
+      <li><a (click)="logout()"><span class="material-icons">logout</span> Logout</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

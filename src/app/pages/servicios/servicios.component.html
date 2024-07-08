@@ -1,0 +1,18 @@
+<div class="main-container">
+  <div class="servicios-container">
+    <div class="button-group">
+      <select class="custom-select" [(ngModel)]="selectedMonth">
+        <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+      </select>
+      <select class="custom-select" [(ngModel)]="selectedYear">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+      <button class="custom-button" (click)="fetchServicios()">Buscar Deudas</button>
+    </div>
+    <button class="custom-button agregar" (click)="agregarDeuda()">Agregar Deuda</button>
+  </div>
+  
+  <div class="cards-container" *ngIf="servicios.length > 0">
+    <app-servicio-card *ngFor="let servicio of servicios" [servicio]="servicio"></app-servicio-card>
+  </div>
+</div>

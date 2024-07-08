@@ -1,0 +1,33 @@
+<div class="prestamo-detalle-container">
+    <h3>Cronograma de Pagos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>NUMERO</th>
+          <th>VENCIMIENTO</th>
+          <th>SALDO</th>
+          <th>CAPITAL</th>
+          <th>INTERES</th>
+          <th>CUOTA</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of prestamo?.cronograma" [ngClass]="getPagoClass(pago)">
+          <td>{{ pago.numero }}</td>
+          <td>{{ pago.fechaVencimiento | date }}</td>
+          <td>{{ pago.saldo | currency }}</td>
+          <td>{{ pago.capital | currency }}</td>
+          <td>{{ pago.interes | currency }}</td>
+          <td>{{ pago.cuota | currency }}</td>
+          <td>
+            <button *ngIf="pago.estado === 'PENDIENTE'" (click)="marcarComoPagada(pago.numero)">Marcar como Pagada</button>
+          </td>
+        </tr>
+        <tr *ngIf="!prestamo?.cronograma || prestamo.cronograma.length === 0">
+          <td colspan="7">No hay datos de cronograma disponibles.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

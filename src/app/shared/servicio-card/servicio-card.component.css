@@ -1,0 +1,81 @@
+.cards-container {
+  /* display: flex; */
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 240px;
+  height: 240px;
+  border-radius: 40px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  background-color: white; /* Asegúrate de que el fondo de la tarjeta sea blanco para todos los estados */
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-body {
+  flex-grow: 1;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.card-footer {
+  text-align: center;
+}
+
+/* .card-document {
+  background-color: rgba(233, 232, 169, 0.8);
+  padding: 5px 10px;
+  border-radius: 11px;
+  margin-bottom: 10px;
+} */
+
+.btn-pagar {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3c3f5a;
+  color: rgb(202, 202, 243);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-pagar:hover {
+  background-color: #0056b3;
+}
+
+/* Card colors based on state */
+.card-pagado{
+  background-color: #28a745; /* Green */
+  color: rgb(241, 238, 205);
+}
+
+.card-vencido {
+  background-color: #dc3545; /* Red */
+  color: rgb(70, 56, 47);
+}
+
+.card-vencen-semana {
+  background-color: #ffc107; /* Yellow */
+  color: black;
+}
+
+.card-por-vencer {
+  background-color: #363c42; /* Gray */
+  color: white;
+}

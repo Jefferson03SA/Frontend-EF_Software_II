@@ -1,0 +1,103 @@
+/* Estilo general para la página de registro */
+.register-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #201f38;
+    /* Fondo principal */
+  }
+  
+  /* Estilo para la tarjeta de registro */
+  .register-card {
+    background-color: #27293d;
+    /* Fondo de la tarjeta con un tono similar pero más claro */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 500px;
+  }
+  
+  /* Estilo para el logo */
+  .register-logo img {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: rgb(141, 184, 221);
+  }
+  
+  /* Estilo para el formulario */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilo para los grupos de formulario */
+  .form-group {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  /* Estilo para los inputs */
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 16px;
+    background-color: #333154;
+    /* Fondo de los inputs */
+    color: #f4f4f9;
+    /* Color de texto en los inputs */
+    padding: 10px 15px;
+  }
+  
+  /* Estilo para el botón */
+  .btn-primary {
+    background-color: #201f38;
+    color: #f4f4f9;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  /* Estilo hover para el botón */
+  .btn-primary:hover {
+    background-color: #333154;
+  }
+  
+  /* Estilo para el link de login */
+  .login-link {
+    margin-top: 15px;
+  }
+  
+  /* Estilo para el link de login */
+  .login-link a {
+    color: #f4f4f9;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Estilo hover para el link de login */
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .text-danger {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    text-align: left;
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+  }
