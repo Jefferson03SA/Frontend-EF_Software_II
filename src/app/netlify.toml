@@ -1,7 +1,7 @@
 [build]
   base = ""
-  publish = "dist/proyecto-gestion-deudas/browser"
-  command = "ng build --configuration production"
+  publish = "dist/proyecto-gestion-deudas"
+  command = "ng build --configuration production --aot"
 
 [[redirects]]
   from = "/*"
