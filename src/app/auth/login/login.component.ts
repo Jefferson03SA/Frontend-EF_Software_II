@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../service/auth/auth.service';
+import { AuthService } from '../../service/authentication/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +23,10 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      const credentials = this.loginForm.value;
-      this.authService.login(credentials).subscribe({
+      this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           console.log('Login successful', response);
-          this.authService.setLoggedIn(true); // Actualizar estado de login en AuthService
+          this.authService.setLoggedIn(true); // actualizar estado de login en AuthService
           this.router.navigate(['/servicios']);
         },
         error: (error) => {
