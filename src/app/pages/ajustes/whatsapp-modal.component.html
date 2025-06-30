@@ -1,0 +1,9 @@
+<div class="modal-container">
+  <h3>Verificar número WhatsApp</h3>
+  <input [(ngModel)]="phoneNumber" placeholder="Ej: 989898980" maxlength="15" />
+  <div *ngIf="error" class="error">{{error}}</div>
+  <div class="modal-actions">
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="verify()" [disabled]="loading">Verificar</button>
+  </div>
+</div>

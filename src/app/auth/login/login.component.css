@@ -1,28 +1,26 @@
-/* Estilo general para la página de login */
+/* Colores y estilos consistentes con el dashboard y registro */
 .login-background {
+  min-height: 100vh;
+  background: #e6f5e8;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #201f38;
-  /* Fondo principal */
 }
 
-/* Estilo para la tarjeta de login */
 .login-card {
-  background-color: #27293d;
-  /* Fondo de la tarjeta con un tono similar pero más claro */
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 500px;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 4px 24px #0001;
+  padding: 48px 36px 32px 36px;
+  min-width: 340px;
+  max-width: 380px;
+  width: 100%;
 }
 
 /* Estilo para el logo */
 .login-logo img {
-  width: 80px;
-  margin-bottom: 20px;
+  width: 64px;
+  margin-bottom: 18px;
 }
 
 p {
@@ -45,34 +43,32 @@ form {
 /* Estilo para los inputs */
 .form-group input {
   width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 25px;
-  outline: none;
-  font-size: 16px;
-  background-color: #333154;
-  /* Fondo de los inputs */
-  color: #f4f4f9;
-  /* Color de texto en los inputs */
-  padding: 10px 15px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1.5px solid #2e4632;
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+  background: #f4f8fa;
+  color: #28342e;
 }
 
 /* Estilo para el botón */
 .btn-primary {
-  background-color: #201f38;
-  color: #f4f4f9;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
   width: 100%;
-  margin-top: 10px;
+  background: #2e4632;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 /* Estilo hover para el botón */
 .btn-primary:hover {
-  background-color: #333154;
+  background: #18301a;
 }
 
 /* Estilo para el link de registro */
@@ -80,16 +76,39 @@ form {
   margin-top: 15px;
 }
 
-/* Estilo para el link de registro */
-.register-link a {
-  color: #f4f4f9;
-  text-decoration: none;
-  font-weight: bold;
+.register-link p {
+  font-size: 15px;
+  color: #28342e;
 }
 
-/* Estilo hover para el link de registro */
-.register-link a:hover {
+.register-link a {
+  color: #0a2618;
   text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Media queries para adaptación móvil */
+@media (max-width: 600px) {
+  .login-background {
+    padding: 0;
+  }
+  .login-card {
+    min-width: 95vw;
+    max-width: 99vw;
+    padding: 32px 8px 24px 8px;
+    border-radius: 18px;
+  }
+  .login-logo img {
+    width: 48px;
+  }
+  .form-group input {
+    font-size: 1rem;
+    padding: 10px 10px;
+  }
+  .btn-primary {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
 }
 
 .text-danger {

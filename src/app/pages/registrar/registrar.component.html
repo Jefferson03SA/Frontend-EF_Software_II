@@ -1,0 +1,65 @@
+<div class="registrar-outer-center">
+  <div class="registrar-outer-container">
+    <div class="registrar-container fade-in">
+      <ng-container *ngIf="!opcionSeleccionada">
+        <div class="opciones-registro">
+          <div class="opcion-registro opcion-ocr" (click)="onSeleccionarOpcion('ocr')">
+            <div class="icono-opcion">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0A2618" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.5"/><path d="M8 5V3M16 5V3"/></svg>
+            </div>
+            <div class="texto-opcion">OCR</div>
+          </div>
+          <div class="opcion-registro opcion-manual" (click)="onSeleccionarOpcion('manual')">
+            <div class="icono-opcion">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19.5 3 21l1.5-4L16.5 3.5z"/></svg>
+            </div>
+            <div class="texto-opcion">MANUAL</div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="opcionSeleccionada === 'manual'">
+        <form [formGroup]="deudaForm" (ngSubmit)="onSubmit()" class="registrar-form">
+          <div *ngIf="errorMsg" class="error-message">{{ errorMsg }}</div>
+          <div class="form-group">
+            <label for="numeroDocumento">Número de documento</label>
+            <input id="numeroDocumento" formControlName="numeroDocumento" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa del servicio</label>
+            <input id="empresa" formControlName="empresa" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="monto">Monto</label>
+            <input id="monto" formControlName="monto" type="number" required />
+          </div>
+          <div class="form-group">
+            <label for="fechaVencimiento">Fecha de vencimiento</label>
+            <input id="fechaVencimiento" formControlName="fechaVencimiento" type="date" required />
+          </div>
+          <button type="submit" class="btn-primary" [disabled]="!deudaForm.valid">Guardar</button>
+        </form>
+      </ng-container>
+      <ng-container *ngIf="opcionSeleccionada === 'ocr'">
+        <div class="ocr-container">
+          <div class="ocr-camera-box">
+            <video id="ocrVideo" autoplay playsinline style="width:100%;height:100%;object-fit:cover;border-radius:18px;"></video>
+            <button type="button" class="btn-primary ocr-tomar-foto" (click)="tomarFoto()">Tomar foto</button>
+          </div>
+          <div class="ocr-or">o</div>
+          <label class="ocr-upload-label">
+            <input type="file" accept="image/*" hidden (change)="onFileSelected($event)" />
+            <div class="ocr-upload-icon">
+              <!-- Icono de imagen -->
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1976d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="ocr-upload-text">Cargar imagen</div>
+          </label>
+          <div *ngIf="ocrResultado" class="ocr-resultado">
+            <h3>Resultado OCR</h3>
+            <pre>{{ ocrResultado | json }}</pre>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

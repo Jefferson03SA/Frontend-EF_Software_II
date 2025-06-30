@@ -26,4 +26,28 @@ export class ServiciosService {
     const url = `${this.apiUrl}/${deudaId}/pagar`;
     return this.http.patch<any>(url, {}, { withCredentials: true });
   }
+
+  getDeudaById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { withCredentials: true });
+  }
+
+  actualizarDeuda(id: number, deuda: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, deuda, { withCredentials: true });
+  }
+
+  actualizarDeudaPatch(id: number, deuda: any): Observable<any> {
+    // PATCH para actualizar parcialmente una deuda
+    return this.http.patch<any>(`${this.apiUrl}/${id}`, deuda, { withCredentials: true });
+  }
+
+  eliminarDeuda(deudaId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${deudaId}`, { withCredentials: true });
+  }
+
+  procesarImagenOCR(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('imagen', file);
+    // Agregar withCredentials para enviar cookies si el backend lo requiere
+    return this.http.post<any>('http://localhost:8080/api/v1/ocr/procesar-imagen', formData, { withCredentials: true });
+  }
 }

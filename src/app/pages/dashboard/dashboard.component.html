@@ -1,0 +1,50 @@
+<!-- Filtros fijos para dashboard -->
+<div class="dashboard-filtros-sticky">
+  <mat-form-field appearance="outline">
+    <mat-label>Mes</mat-label>
+    <mat-select [(value)]="selectedMonth" (selectionChange)="onMonthChangeFromFiltro($event.value)">
+      <mat-option *ngFor="let month of months" [value]="month.value">{{ month.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Estado</mat-label>
+    <mat-select [(value)]="selectedEstado" (selectionChange)="onEstadoChangeFromFiltro($event.value)">
+      <mat-option value="">Todos</mat-option>
+      <mat-option value="PENDIENTE">Pendiente</mat-option>
+      <mat-option value="PAGADO">Pagado</mat-option>
+      <mat-option value="VENCIDO">Vencido</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<!-- Contenido principal del dashboard -->
+<div class="dashboard-content">
+  <div class="dashboard-grid">
+    <div *ngFor="let deuda of deudasFiltradas" class="deuda-card">
+      <div class="icon-estado" [ngClass]="deuda.estadoVisual">
+        <ng-container [ngSwitch]="deuda.estadoVisual">
+          <svg *ngSwitchCase="'PAGADO'" class="icon-svg icon-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <svg *ngSwitchCase="'PENDIENTE'" class="icon-svg icon-clock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M12 6v6l4 2"/></svg>
+          <svg *ngSwitchCase="'VENCIDO'" class="icon-svg icon-alert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="13" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+          <span *ngSwitchDefault>?</span>
+        </ng-container>
+      </div>
+      <div class="deuda-info">
+        <div class="deuda-empresa">{{ deuda.empresa }}</div>
+        <div class="deuda-monto">{{ deuda.monto }} S/</div>
+        <div class="deuda-fecha">{{ deuda.fechaVencimiento | date:'dd/MM/yyyy' }}</div>
+      </div>
+      <div class="deuda-actions">
+        <button *ngIf="deuda.estadoVisual === 'PENDIENTE' || deuda.estadoVisual === 'VENCIDO'" class="btn-action btn-edit" (click)="editarDeuda(deuda)" title="Editar">
+          <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 21h4.586a1 1 0 0 0 .707-.293l10.414-10.414a2 2 0 0 0 0-2.828l-2.172-2.172a2 2 0 0 0-2.828 0L4.293 15.586A1 1 0 0 0 4 16.293V21z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14.828 9.172l-1-1" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <button class="btn-action btn-delete" (click)="eliminarDeuda(deuda)" title="Eliminar">
+          <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="10" y1="11" x2="10" y2="17" stroke="currentColor" stroke-width="2"/><line x1="14" y1="11" x2="14" y2="17" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <button *ngIf="deuda.estadoVisual === 'PENDIENTE' || deuda.estadoVisual === 'VENCIDO'" class="btn-action btn-pay" (click)="marcarComoPagada(deuda)" title="Marcar como pagada">
+          <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M8 12l2 2l4-4"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="ajustes-container fade-in">
+  <mat-card>
+    <h2>Ajustes de usuario</h2>
+    <mat-divider></mat-divider>
+    <div class="ajustes-opciones">
+      <mat-slide-toggle [(ngModel)]="settings.autoReminders">Recordatorios automáticos</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="settings.whatsappNotifications" (change)="onWhatsappToggle()">
+        Notificaciones por WhatsApp
+      </mat-slide-toggle>
+      <div *ngIf="settings.whatsappNotifications && whatsappNumber" class="whatsapp-session">
+        <span>Número registrado: <b>{{ whatsappNumber }}</b></span>
+        <button mat-stroked-button color="warn" (click)="cerrarSesionWhatsapp()" style="margin-left: 16px;">Cerrar sesión WhatsApp</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="ajustes-idioma">
+      <label for="idioma">Idioma:</label>
+      <select id="idioma" [(ngModel)]="settings.language">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <button mat-raised-button color="primary" (click)="saveSettings()" style="margin-top: 24px;">Guardar cambios</button>
+  </mat-card>
+</div>

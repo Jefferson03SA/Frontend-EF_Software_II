@@ -1,0 +1,95 @@
+/* Estilos para ajustes. Personaliza según tu diseño. */
+body, .ajustes-container {
+  background: #FFFFFF;
+  color: #0A2618;
+}
+
+.ajustes-container {
+  background: #DEF2DE;
+  color: #0A2618;
+  padding: 2.5rem 2rem;
+  min-height: 100vh;
+  border-radius: 0 0 32px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+mat-card {
+  background: #FFFFFF;
+  color: #0A2618;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px #0001;
+  padding: 2rem 2.5rem;
+  border: none;
+  min-width: 340px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.ajustes-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0 1.5rem 0;
+}
+
+mat-slide-toggle {
+  color: #28342E;
+}
+
+.whatsapp-session {
+  margin-top: 0.5rem;
+  color: #28342E;
+  font-weight: 600;
+}
+
+.ajustes-idioma {
+  margin: 1.5rem 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+select {
+  background: #DEF2DE;
+  color: #0A2618;
+  border: none;
+  border-radius: 12px;
+  padding: 6px 18px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: none;
+}
+
+button[mat-raised-button], button[mat-stroked-button] {
+  background: #28342E;
+  color: #DEF2DE;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s;
+}
+button[mat-raised-button]:hover, button[mat-stroked-button]:hover {
+  background: #DEF2DE;
+  color: #28342E;
+}
+
+mat-divider {
+  margin: 1.5rem 0;
+  border: none;
+  height: 2px;
+  background: #DEF2DE;
+}
+
+@media (max-width: 900px) {
+  .ajustes-container {
+    padding: 1rem;
+  }
+  mat-card {
+    padding: 1rem;
+    min-width: 0;
+    max-width: 100%;
+  }
+}

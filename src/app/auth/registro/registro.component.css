@@ -1,103 +1,122 @@
-/* Estilo general para la página de registro */
+/* Colores y estilos consistentes con el dashboard y login */
 .register-background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #201f38;
-    /* Fondo principal */
+  min-height: 100vh;
+  background: #e6f5e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-card {
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 4px 24px #0001;
+  padding: 48px 36px 32px 36px;
+  min-width: 340px;
+  max-width: 380px;
+  width: 100%;
+}
+
+.register-logo img {
+  width: 64px;
+  margin-bottom: 18px;
+}
+
+p {
+  color: #28342E;
+}
+
+/* Estilo para el formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo para los grupos de formulario */
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+/* Estilo para los inputs */
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1.5px solid #2e4632;
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+  background: #f4f8fa;
+  color: #28342e;
+}
+
+/* Estilo para el botón */
+.btn-primary {
+  width: 100%;
+  background: #2e4632;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Estilo hover para el botón */
+.btn-primary:hover {
+  background: #18301a;
+}
+
+/* Estilo para el link de login */
+.login-link {
+  margin-top: 15px;
+}
+
+/* Estilo para el link de login */
+.login-link a {
+  color: #f4f4f9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Estilo hover para el link de login */
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.register-link p {
+  font-size: 15px;
+  color: #28342E;
+}
+
+.register-link a {
+  color: #0A2618;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .register-background {
+    padding: 0;
   }
-  
-  /* Estilo para la tarjeta de registro */
   .register-card {
-    background-color: #27293d;
-    /* Fondo de la tarjeta con un tono similar pero más claro */
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 500px;
+    min-width: 95vw;
+    max-width: 99vw;
+    padding: 32px 8px 24px 8px;
+    border-radius: 18px;
   }
-  
-  /* Estilo para el logo */
   .register-logo img {
-    width: 80px;
-    margin-bottom: 20px;
+    width: 48px;
   }
-  
-  p {
-    color: rgb(141, 184, 221);
-  }
-  
-  /* Estilo para el formulario */
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Estilo para los grupos de formulario */
-  .form-group {
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  
-  /* Estilo para los inputs */
   .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 25px;
-    outline: none;
-    font-size: 16px;
-    background-color: #333154;
-    /* Fondo de los inputs */
-    color: #f4f4f9;
-    /* Color de texto en los inputs */
-    padding: 10px 15px;
+    font-size: 1rem;
+    padding: 10px 10px;
   }
-  
-  /* Estilo para el botón */
   .btn-primary {
-    background-color: #201f38;
-    color: #f4f4f9;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    margin-top: 10px;
+    font-size: 1rem;
+    padding: 10px 0;
   }
-  
-  /* Estilo hover para el botón */
-  .btn-primary:hover {
-    background-color: #333154;
-  }
-  
-  /* Estilo para el link de login */
-  .login-link {
-    margin-top: 15px;
-  }
-  
-  /* Estilo para el link de login */
-  .login-link a {
-    color: #f4f4f9;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  /* Estilo hover para el link de login */
-  .login-link a:hover {
-    text-decoration: underline;
-  }
-  
-  .text-danger {
-    color: red;
-    font-size: 0.8em;
-    margin-top: 5px;
-    text-align: left;
-    position: absolute;
-    bottom: -20px;
-    left: 10px;
-  }
+}

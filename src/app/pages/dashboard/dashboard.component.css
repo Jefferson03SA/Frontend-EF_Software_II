@@ -1,0 +1,177 @@
+body, .sidenav-container {
+  background: #FFFFFF;
+  color: #0A2618;
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.dashboard-content {
+  background: #DEF2DE;
+  color: #0A2618;
+  padding: 2rem 2.5rem;
+  min-height: 100vh;
+  border-radius: 0 0 32px 32px;
+  max-width: 1600px;
+  width: 99%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.dashboard-filtros-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #FFFFFF;
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 2.5rem 1rem 2.5rem;
+  border-bottom: none;
+  box-shadow: none;
+  max-width: 1600px;
+  width: 99%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+mat-form-field {
+  min-width: 200px;
+}
+
+.mat-mdc-form-field-flex {
+  background: #DEF2DE !important;
+  color: #0A2618 !important;
+  border-radius: 16px !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mat-mdc-select-value {
+  color: #0A2618 !important;
+}
+
+.mat-mdc-select-panel {
+  background: #DEF2DE !important;
+  color: #0A2618 !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  color: #28342E !important;
+  background: #DEF2DE !important;
+}
+
+.mat-mdc-option.mdc-list-item {
+  color: #0A2618 !important;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 2rem;
+}
+
+.deuda-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 24px #0001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 180px;
+  color: #0A2618;
+  border: none;
+}
+
+.icon-estado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.icon-svg {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.icon-check { color: #1bbf3a; }
+.icon-clock { color: #f7c948; }
+.icon-alert { color: #e53935; }
+
+.deuda-info {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+  width: 100%;
+}
+.deuda-empresa {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  color: #28342E;
+}
+.deuda-monto {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.deuda-fecha {
+  font-size: 1rem;
+  color: #0A2618;
+}
+
+.deuda-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.btn-action {
+  background: #DEF2DE;
+  color: #28342E;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 6px 14px;
+  font-size: 1.1rem;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: none;
+}
+.btn-action:hover {
+  background: #28342E;
+  color: #DEF2DE;
+}
+.btn-edit .icon-svg { color: #1976d2; }
+.btn-delete .icon-svg { color: #e53935; }
+.btn-pay .icon-svg { color: #1bbf3a; }
+
+body, html, .sidenav-container, mat-sidenav-content {
+  overflow-x: hidden !important;
+}
+
+@media (max-width: 900px) {
+  .dashboard-content {
+    padding: 1rem;
+  }
+  .dashboard-filtros-sticky {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

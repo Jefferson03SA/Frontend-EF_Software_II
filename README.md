@@ -1,27 +1,160 @@
-# ProyectoGestionDeudas
+# Backend PayGrid - Software II
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+Este es el backend de la aplicación PayGrid, un sistema de gestión de préstamos y deudas.
 
-## Development server
+## Endpoints de la API
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Usuarios (`/usuarios`)
 
-## Code scaffolding
+#### Registro y Autenticación
+- `POST /usuarios/registro` - Registrar un nuevo usuario
+  - Body: `{ "email": string, "username": string, "password": string }`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- `POST /usuarios/login` - Iniciar sesión
+  - Body: `{ "email": string, "password": string }`
 
-## Build
+- `POST /usuarios/logout` - Cerrar sesión
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `GET /usuarios/check-auth` - Verificar autenticación
 
-## Running unit tests
+### Préstamos (`/prestamos`)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `POST /prestamos/registrar` - Registrar un nuevo préstamo
+  - Requiere autenticación
+  - Body: Detalles del préstamo
 
-## Running end-to-end tests
+- `GET /prestamos` - Consultar todos los préstamos del usuario
+  - Requiere autenticación
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `GET /prestamos/{prestamoId}/cronograma` - Consultar el cronograma de un préstamo
+  - Requiere autenticación
 
-## Further help
+- `PATCH /prestamos/{prestamoId}/cronograma/{numero}/pagar` - Marcar un pago como realizado
+  - Requiere autenticación
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `POST /prestamos/enviar-notificaciones` - Enviar notificaciones de préstamos
+  - Requiere autenticación
+
+### Deudas (`/deudas`)
+
+- `POST /deudas/registro` - Registrar una nueva deuda
+  - Requiere autenticación
+  - Body: Detalles de la deuda
+
+- `GET /deudas/consulta?mes={YYYY-MM}` - Consultar deudas por mes
+  - Requiere autenticación
+  - Parámetro: mes en formato YYYY-MM
+
+- `PATCH /deudas/{deudaId}/pagar` - Marcar una deuda como pagada
+  - Requiere autenticación
+
+- `POST /deudas/alertas` - Obtener alertas de vencimientos del día
+  - Requiere autenticación
+
+### WhatsApp (`/whatsapp`)
+
+- `POST /whatsapp/session/start` - Iniciar una sesión de WhatsApp
+  - Parámetro: `phoneNumber`
+
+- `POST /whatsapp/message/send` - Enviar un mensaje de WhatsApp
+  - Body: Detalles del mensaje
+
+- `GET /whatsapp/session/status` - Verificar el estado de una sesión
+  - Parámetro: `phoneNumber`
+
+- `PUT /whatsapp/session/status` - Actualizar el estado de una sesión
+  - Parámetros: 
+    - `phoneNumber`
+    - `isActive`
+
+## Estructura de Datos
+
+### Entidades
+
+#### Usuario
+```java
+{
+    Long id;                    // ID único del usuario
+    String email;              // Email único del usuario (requerido)
+    String username;           // Nombre de usuario único (requerido)
+    String password;           // Contraseña del usuario (requerido)
+}
+```
+
+#### Prestamo
+```java
+{
+    Long id;                    // ID único del préstamo
+    BigDecimal monto;          // Monto del préstamo
+    BigDecimal interes;        // Tasa de interés
+    LocalDate fechaDesembolso; // Fecha de desembolso
+    Integer plazo;             // Plazo en meses
+    String entidad;            // Entidad financiera
+    Usuario usuario;           // Usuario asociado
+    List<CronogramaPago> cronogramaPagos; // Lista de pagos programados
+}
+```
+
+#### Deuda
+```java
+{
+    Long id;                    // ID único de la deuda
+    String numeroDocumento;     // Número de documento único (requerido)
+    String empresa;            // Empresa acreedora (requerido)
+    BigDecimal monto;          // Monto de la deuda (requerido)
+    LocalDate fechaVencimiento; // Fecha de vencimiento (requerido)
+    Estado estado;             // Estado de la deuda (ENUM)
+    Usuario usuario;           // Usuario asociado
+}
+```
+
+#### CronogramaPago
+```java
+{
+    Long id;                    // ID único del pago
+    Integer numero;            // Número de cuota
+    LocalDate fechaVencimiento; // Fecha de vencimiento
+    BigDecimal saldo;          // Saldo pendiente
+    BigDecimal capital;        // Capital a pagar
+    BigDecimal interes;        // Interés a pagar
+    BigDecimal cuota;          // Monto total de la cuota
+    Estado estado;             // Estado del pago (ENUM)
+    Prestamo prestamo;         // Préstamo asociado
+}
+```
+
+#### WhatsAppSession
+```java
+{
+    Long id;                    // ID único de la sesión
+    String phoneNumber;         // Número de teléfono
+    String sessionToken;        // Token de sesión
+    boolean isActive;          // Estado de la sesión
+    LocalDateTime lastConnection; // Última conexión
+    LocalDateTime createdAt;    // Fecha de creación
+    LocalDateTime updatedAt;    // Fecha de actualización
+}
+```
+
+### Estados (Enum)
+```java
+enum Estado {
+    PENDIENTE,
+    PAGADO,
+    VENCIDO
+}
+```
+
+## Notas de Autenticación
+
+- La mayoría de los endpoints requieren autenticación mediante token
+- Las credenciales se envían en el header de la petición
+- El token se obtiene al hacer login y debe incluirse en las peticiones subsecuentes
+
+## Tecnologías Utilizadas
+
+- Spring Boot
+- Spring Security
+- JPA/Hibernate
+- PostgreSQL
+- WhatsApp Web API

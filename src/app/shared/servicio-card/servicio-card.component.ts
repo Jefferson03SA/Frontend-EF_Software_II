@@ -48,31 +48,27 @@ export class ServicioCardComponent implements OnInit {
     return date;
   }
 
+  // Compara solo año, mes y día (ignora horas y zona horaria)
+  isSameDay(date1: Date, date2: Date): boolean {
+    return date1.getFullYear() === date2.getFullYear() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getDate() === date2.getDate();
+  }
+
   getCardClass(): string {
-    const hoy = this.clearTime(new Date());
-    const fechaVencimiento = this.clearTime(new Date(this.servicio.fechaVencimiento));
-    const fechaVencimientoAdjusted = new Date(fechaVencimiento);
-    fechaVencimientoAdjusted.setDate(fechaVencimiento.getDate() + 1);
-
-    const inicioSemanaActual = new Date(hoy);
-    inicioSemanaActual.setDate(hoy.getDate() - hoy.getDay() + (hoy.getDay() === 0 ? -6 : 1)); // Lunes de esta semana
-    const finSemanaActual = new Date(inicioSemanaActual);
-    finSemanaActual.setDate(inicioSemanaActual.getDate() + 6); // Domingo de esta semana
-
-    const inicioSemanaProxima = new Date(finSemanaActual);
-    inicioSemanaProxima.setDate(finSemanaActual.getDate() + 1); // Lunes de la próxima semana
-    const finSemanaProxima = new Date(inicioSemanaProxima);
-    finSemanaProxima.setDate(inicioSemanaProxima.getDate() + 6); // Domingo de la próxima semana
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    const fechaVencimiento = new Date(this.servicio.fechaVencimiento);
+    fechaVencimiento.setHours(0, 0, 0, 0);
 
     if (this.servicio.estado === 'PAGADA') {
       return 'card-pagado';
-    } else if (fechaVencimientoAdjusted < hoy) {
+    } else if (fechaVencimiento.getTime() < hoy.getTime()) {
       return 'card-vencido';
-    } else if (fechaVencimientoAdjusted.getTime() === hoy.getTime() || (fechaVencimientoAdjusted >= inicioSemanaActual && fechaVencimientoAdjusted <= finSemanaActual)) {
-      return 'card-vencen-semana';
-    } else if (fechaVencimientoAdjusted >= inicioSemanaProxima && fechaVencimientoAdjusted <= finSemanaProxima) {
-      return 'card-por-vencer';
+    } else if (fechaVencimiento.getTime() === hoy.getTime()) {
+      return 'card-vencen-semana'; // o 'card-hoy' si quieres un estilo especial
     } else {
+      // Aquí puedes seguir con la lógica de semana, etc.
       return 'card-por-vencer';
     }
   }
