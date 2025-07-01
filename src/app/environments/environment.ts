@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://backend-app-iu93.onrender.com/api/v1' // Asegúrate de que esta URL sea la correcta
+    apiUrl: 'http://34.229.11.176:8080/api/v1/' // Asegúrate de que esta URL sea la correcta
   };
   
